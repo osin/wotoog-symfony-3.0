@@ -1,0 +1,20 @@
+application:
+    build: .
+    volumes:
+        - ./wotoog:/var/www/html
+        - ./logs:/var/www/html/var/logs
+    links:
+        - db
+    ports:
+        - 8000:8000
+        - 80:80
+#    command: php /var/www/html/bin/console server:run
+db:
+    image: mysql
+    ports:
+        - 3306:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
